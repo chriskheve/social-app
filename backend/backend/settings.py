@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'chat',
     'notification',
     'rest_framework',
+    'drf_yasg',
     'search',
     'rest_framework_simplejwt',
     'corsheaders',
@@ -165,3 +166,19 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configuration pour drf_yasg
+SWAGGER_SETTINGS = {
+    'DEFAULT_INFO': 'path.to.your.schema_view',  # Remplacez par le chemin de votre schéma
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header',
+            'description': "JWT Authorization header using the Bearer scheme. Example: 'Authorization: Bearer {token}'",
+        }
+    },
+    'USE_SESSION_AUTH': False,  # Si vous utilisez JWT, vous n'avez pas besoin de l'authentification de session.
+    'LOGIN_URL': None,  # Désactiver la connexion de session pour Swagger.
+    'LOGOUT_URL': None,  # Désactiver la déconnexion de session pour Swagger.
+}

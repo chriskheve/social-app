@@ -1,3 +1,4 @@
+from drf_yasg.utils import swagger_auto_schema
 from django.db.models import Q
 from django.http import JsonResponse
 
@@ -13,6 +14,10 @@ from .models import Post, Like, Comment, Trend
 from .serializers import PostSerializer, PostDetailSerializer, CommentSerializer, TrendSerializer
 
 # Create your views here.
+@swagger_auto_schema(
+    method='get',
+    responses={200: PostSerializer(many=True)},
+)
 @api_view(['GET'])
 def post_list(request): # change later to feed
   user_ids = [request.user.id]
